@@ -1,12 +1,6 @@
 package com.website.vzw.User;
-
-import com.website.vzw.Address.Address;
 import com.website.vzw.City.City;
-
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "User")
 public class User {
-
+    // creating all attributes in table User
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUser")
@@ -45,22 +39,22 @@ public class User {
     private String gender;
 
     @ManyToOne
-    @JoinColumn(name = "fk_Address")
-    private Address address;
+    @JoinColumn(name = "fk_City")
+    private City city;
 
-
-    public User(String name, String surname, String email, Date birthDate, String gender, Address address) {
+    // constructor
+    public User(String name, String surname, String email, Date birthDate, String gender, City city) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.birthDate = birthDate;
         this.gender = gender;
-        this.address = address;
-        this.address = address;
+        this.city = city;
     }
 
     public User() {}
 
+    // getters and setters
     public Long getIdUser() {
         return idUser;
     }
@@ -109,12 +103,12 @@ public class User {
         this.gender = gender;
     }
 
-    public Address getAddress() {
-        return address;
+    public City getCity() {
+        return city;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setCity(City city) {
+        this.city = city;
     }
 
 }

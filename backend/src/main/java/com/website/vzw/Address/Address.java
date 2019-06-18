@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Address")
 public class Address {
-
+    // generating all attributes in table Address
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idAddress")
@@ -21,6 +21,7 @@ public class Address {
     @JoinColumn(name = "fk_City")
     private City city;
 
+    //constructor
     public Address(String address, City city) {
         this.address = address;
         this.city = city;
@@ -28,6 +29,7 @@ public class Address {
 
     public Address() {}
 
+    // getters and setters
     public Long getIdAddress() {
         return idAddress;
     }
