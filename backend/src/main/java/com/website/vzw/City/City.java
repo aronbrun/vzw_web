@@ -7,7 +7,7 @@ import java.util.Date;
 @Entity
 @Table(name = "City")
 public class City {
-
+    // creating all attributes in table City
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idCity")
@@ -19,6 +19,7 @@ public class City {
     @Column(name = "name")
     private String name;
 
+    // constructor
     public City(String postCode, String name) {
         this.postCode = postCode;
         this.name = name;
@@ -26,6 +27,7 @@ public class City {
 
     public City() {}
 
+    // getters and setters
     public Long getIdCity() {
         return idCity;
     }
