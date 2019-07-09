@@ -1,6 +1,5 @@
 package com.website.vzw.City;
 
-import com.website.vzw.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +20,8 @@ public class CityController {
 
 
     @Autowired
-    public CityController(CityService userService) {
-        this.cityService = userService;
+    public CityController(CityService cityService) {
+        this.cityService = cityService;
     }
 
     @GetMapping("/{id}")

@@ -8,17 +8,41 @@ import { HttpModule } from '@angular/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
+import { LeistungssportComponent } from './components/leistungssport/leistungssport.component';
+import { BreitensportComponent } from './components/breitensport/breitensport.component';
+import { VereinComponent } from './components/verein/verein.component';
+import { KurseComponent } from './components/kurse/kurse.component';
 
 const appRoutes: Routes = [
   {
       path: 'home',
       component: HomeComponent
-  }];
+  },
+  {
+    path: 'leistungssport',
+    component: LeistungssportComponent
+},
+{
+  path: 'breitensport',
+  component: BreitensportComponent
+},
+{
+  path: 'verein',
+  component: VereinComponent
+},
+{
+path: 'kurse',
+component: KurseComponent
+}];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LeistungssportComponent,
+    BreitensportComponent,
+    VereinComponent,
+    KurseComponent
   ],
   imports: [
     HttpModule,

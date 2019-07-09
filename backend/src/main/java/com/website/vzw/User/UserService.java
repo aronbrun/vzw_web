@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static java.lang.Math.toIntExact;
+
 
 @Service
 public class UserService {
@@ -29,7 +31,7 @@ public class UserService {
     public boolean update(User user, Long id) {
         Optional<User> currentUser = userRepository.findById(id);
         if (currentUser.isPresent()) {
-            user.setIdUser(id);
+            user.setIdUser(toIntExact(id));
         } else {
             return false;
         }

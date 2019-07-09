@@ -19,6 +19,15 @@ export class BackendService {
       .pipe(map(response => response));
   }
 
+  getById(url: string, id: number): Observable<any> {
+    return this.http.get(this.baseUrl + url + id)
+      .pipe(map(response => response));
+  }
+  getByLogin(url: string, username: string, password: string): Observable<any> {
+    return this.http.get(this.baseUrl + url + username + "/" + password)
+      .pipe(map(response => response));
+  }
+
   post(url: string, object: any): Observable<any> {
     return this.create(url, object);
   }

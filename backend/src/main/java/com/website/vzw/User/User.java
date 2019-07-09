@@ -1,68 +1,32 @@
 package com.website.vzw.User;
-import com.website.vzw.City.City;
-import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
+import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
-@Table(name = "User")
 public class User {
-    // creating all attributes in table User
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUser")
-    private Long idUser;
-
-    @Column(name = "name")
+    private int idUser;
     private String name;
-
-    @Column(name = "surname")
     private String surname;
-
-    @Column(name = "email")
     private String email;
-
-    @Column(name = "birthDate")
     private Date birthDate;
-
-    @Column(name = "gender")
     private String gender;
+    private String phone;
+    private int fkAddress;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_City")
-    private City city;
-
-    // constructor
-    public User(String name, String surname, String email, Date birthDate, String gender, City city) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.birthDate = birthDate;
-        this.gender = gender;
-        this.city = city;
-    }
-
-    public User() {}
-
-    // getters and setters
-    public Long getIdUser() {
+    @Id
+    @Column(name = "idUser")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Long idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 
+    @Basic
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -71,6 +35,8 @@ public class User {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "surname")
     public String getSurname() {
         return surname;
     }
@@ -79,6 +45,8 @@ public class User {
         this.surname = surname;
     }
 
+    @Basic
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -87,6 +55,8 @@ public class User {
         this.email = email;
     }
 
+    @Basic
+    @Column(name = "birthDate")
     public Date getBirthDate() {
         return birthDate;
     }
@@ -95,6 +65,8 @@ public class User {
         this.birthDate = birthDate;
     }
 
+    @Basic
+    @Column(name = "gender")
     public String getGender() {
         return gender;
     }
@@ -103,12 +75,55 @@ public class User {
         this.gender = gender;
     }
 
-    public City getCity() {
-        return city;
+    @Basic
+    @Column(name = "phone")
+    public String getPhone() {
+        return phone;
     }
 
-    public void setCity(City city) {
-        this.city = city;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
+    @Basic
+    @Column(name = "fk_Address")
+    public int getFkAddress() {
+        return fkAddress;
+    }
+
+    public void setFkAddress(int fkAddress) {
+        this.fkAddress = fkAddress;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (idUser != user.idUser) return false;
+        if (fkAddress != user.fkAddress) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
+        if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (birthDate != null ? !birthDate.equals(user.birthDate) : user.birthDate != null) return false;
+        if (gender != null ? !gender.equals(user.gender) : user.gender != null) return false;
+        if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idUser;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (birthDate != null ? birthDate.hashCode() : 0);
+        result = 31 * result + (gender != null ? gender.hashCode() : 0);
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + fkAddress;
+        return result;
+    }
 }

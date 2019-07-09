@@ -1,43 +1,26 @@
 package com.website.vzw.Address;
 
-import com.website.vzw.City.City;
-
 import javax.persistence.*;
 
-
 @Entity
-@Table(name = "Address")
 public class Address {
-    // generating all attributes in table Address
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idAddress")
-    private Long idAddress;
-
-    @Column(name = "address")
+    private int idAddress;
     private String address;
+    private int fkCity;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_City")
-    private City city;
-
-    //constructor
-    public Address(String address, City city) {
-        this.address = address;
-        this.city = city;
-    }
-
-    public Address() {}
-
-    // getters and setters
-    public Long getIdAddress() {
+    @Id
+    @Column(name = "idAddress")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getIdAddress() {
         return idAddress;
     }
 
-    public void setIdAddress(Long idAddress) {
+    public void setIdAddress(int idAddress) {
         this.idAddress = idAddress;
     }
 
+    @Basic
+    @Column(name = "address")
     public String getAddress() {
         return address;
     }
@@ -46,11 +29,35 @@ public class Address {
         this.address = address;
     }
 
-    public City getCity() {
-        return city;
+    @Basic
+    @Column(name = "fk_City")
+    public int getFkCity() {
+        return fkCity;
     }
 
-    public void setCity(City city) {
-        this.city = city;
+    public void setFkCity(int fkCity) {
+        this.fkCity = fkCity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Address address1 = (Address) o;
+
+        if (idAddress != address1.idAddress) return false;
+        if (fkCity != address1.fkCity) return false;
+        if (address != null ? !address.equals(address1.address) : address1.address != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idAddress;
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + fkCity;
+        return result;
     }
 }

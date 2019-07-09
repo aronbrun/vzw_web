@@ -1,6 +1,6 @@
 
 <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color" [containerInside]="false">
+<mdb-navbar id="nav" SideClass="navbar navbar-expand-lg navbar-dark unique-color" [containerInside]="false">
 
   <!-- Navbar brand -->
   <mdb-navbar-brand><a class="navbar-brand" href="/home/"><img src="../assets/images/vzw_logo_transparent.png" height="30" alt=""></a></mdb-navbar-brand>
@@ -11,23 +11,27 @@
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link waves-light" href="/home/" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link waves-light" href="/home/" mdbWavesEffect>Home</a>
+        <!-- <span class="sr-only">(current)</span> -->
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect>Leistungssport</a>
+        <a class="nav-link waves-light" href="/leistungssport/" mdbWavesEffect>Leistungssport</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect>Breitensport</a>
+        <a class="nav-link waves-light" href="/breitensport/"mdbWavesEffect>Breitensport</a>
       </li>
+      <li class="nav-item">
+          <a class="nav-link waves-light" href="/verein/"mdbWavesEffect>Verein</a>
+        </li>
 
       <!-- Dropdown -->
       <li class="nav-item dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           Kurse<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Age 4-6</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Age 6-10</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Age 10-13</a>
+          <a class="dropdown-item waves-light" href="/kurse/" mdbWavesEffect>Age 4-6</a>
+          <a class="dropdown-item waves-light" href="/kurse/"mdbWavesEffect>Age 6-10</a>
+          <a class="dropdown-item waves-light" href="/kurse/"mdbWavesEffect>Age 10-13</a>
           <div class="divider dropdown-divider"></div>
           <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
         </div>
@@ -65,9 +69,46 @@
   </links>
   <!-- Collapsible content -->
 </mdb-navbar>
-
-<!--/.Navbar-->
-<div id="mainContent">
-  <router-outlet>
-  </router-outlet>
-</div>
+    <div class="row">
+      <div id="side" class="col-lg-3">
+          <mdb-card id="side-card">
+              <!--Card image-->
+              <mdb-card-img id="vzwpic" src="https://vzw1981.clubdesk.com/clubdesk/fileservlet?type=image&inline=true&id=1000020&imageFormat=_512x512" alt="Card image cap"></mdb-card-img>
+              <!--Card content-->
+              <mdb-card-body>
+            
+                <!--Text-->
+                <mdb-card-text> 
+                    <h2>Aktuell</h2>
+                    <p>- Züri Fäscht mit VZW Show </p> 
+                    <p>- Neue Kurse ab August</p> 
+                    <h2>Kontakt</h2>
+                    <p>VZW Kontaktdaten</p> 
+                    <div id="loginSuccess" class="alert alert-success" role="alert">
+                      Dein Login war erfolgreich.
+                    </div>
+              <form id="form1" class="text-center">
+                  <h2>Mitgliederbereich</h2>
+                  <p>Melde dich mit deinem Mitgliederlogin an</p> 
+            
+              <input type="text" id="username" class="form-control mb-4" placeholder="Username">
+              <input type="password" id="password" class="form-control mb-4" placeholder="Passwort">
+              <div id="error"></div>
+              <p></p>
+              <a href="">Passwort vergessen?</a>
+              <p></p>
+              <!-- Sign in button -->
+              <button (click)='onLogin("username", "password")' mdbBtn size="lg">Anmelden</button>
+            
+            
+            </form>
+                </mdb-card-text>
+            
+              </mdb-card-body>
+            </mdb-card>
+      </div>
+      <div id="mainContent" class="col-lg-9">
+          <router-outlet>
+            </router-outlet>
+      </div>
+    </div>

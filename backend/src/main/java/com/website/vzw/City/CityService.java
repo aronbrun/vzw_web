@@ -1,11 +1,12 @@
 package com.website.vzw.City;
 
-import com.website.vzw.City.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static java.lang.Math.toIntExact;
 
 
 @Service
@@ -31,7 +32,7 @@ public class CityService {
     public boolean update(City city, Long id) {
         Optional<City> currentCity = cityRepository.findById(id);
         if (currentCity.isPresent()) {
-            city.setIdCity(id);
+            city.setIdCity(toIntExact(id));
         } else {
             return false;
         }

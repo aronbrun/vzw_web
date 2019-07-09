@@ -1,11 +1,12 @@
 package com.website.vzw.Address;
 
-import com.website.vzw.Address.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static java.lang.Math.toIntExact;
 
 
 @Service
@@ -31,7 +32,7 @@ public class AddressService {
     public boolean update(Address address, Long id) {
         Optional<Address> currentAddress = addressRepository.findById(id);
         if (currentAddress.isPresent()) {
-            address.setIdAddress(id);
+            address.setIdAddress(toIntExact(id));
         } else {
             return false;
         }

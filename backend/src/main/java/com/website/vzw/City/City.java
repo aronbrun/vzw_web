@@ -1,41 +1,26 @@
 package com.website.vzw.City;
 
 import javax.persistence.*;
-import java.util.Date;
-
 
 @Entity
-@Table(name = "City")
 public class City {
-    // creating all attributes in table City
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCity")
-    private Long idCity;
-
-    @Column(name = "postCode")
+    private int idCity;
     private String postCode;
-
-    @Column(name = "name")
     private String name;
 
-    // constructor
-    public City(String postCode, String name) {
-        this.postCode = postCode;
-        this.name = name;
-    }
-
-    public City() {}
-
-    // getters and setters
-    public Long getIdCity() {
+    @Id
+    @Column(name = "idCity")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getIdCity() {
         return idCity;
     }
 
-    public void setIdCity(Long idCity) {
+    public void setIdCity(int idCity) {
         this.idCity = idCity;
     }
 
+    @Basic
+    @Column(name = "postCode")
     public String getPostCode() {
         return postCode;
     }
@@ -44,11 +29,35 @@ public class City {
         this.postCode = postCode;
     }
 
+    @Basic
+    @Column(name = "name")
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        City city = (City) o;
+
+        if (idCity != city.idCity) return false;
+        if (postCode != null ? !postCode.equals(city.postCode) : city.postCode != null) return false;
+        if (name != null ? !name.equals(city.name) : city.name != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idCity;
+        result = 31 * result + (postCode != null ? postCode.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 }
